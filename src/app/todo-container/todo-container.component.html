@@ -1,0 +1,14 @@
+<div class="todo-container">
+  <h1>Your amazing todo list</h1>
+
+  <!-- form for adding tasks -->
+  <form name="taskForm" #taskForm="ngForm">
+    <input type="text" name="taskName" ngModel />
+    <button (click)="addTask(taskForm)">Add task</button>
+  </form>
+
+  <!-- task list-->
+  <ul *ngIf="itemList && itemList.length">
+    <li *ngFor="let item of itemList">{{ item.title }}</li>
+  </ul>
+</div>
