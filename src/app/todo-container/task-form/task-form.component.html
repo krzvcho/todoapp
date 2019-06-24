@@ -1,0 +1,6 @@
+<form name="taskForm" #taskForm="ngForm">
+  <input type="text" name="taskName" [(ngModel)]="inputVal" />
+  <button class="btn btn-primary" (click)="formSubmit.emit(inputVal)">
+    Add task
+  </button>
+</form>

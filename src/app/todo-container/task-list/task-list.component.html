@@ -1,0 +1,4 @@
+Task list: {{ itemList.length }}
+<ul *ngIf="itemList && itemList.length">
+  <li *ngFor="let item of itemList">{{ item.title }}</li>
+</ul>

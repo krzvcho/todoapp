@@ -8,7 +8,6 @@ import { TodoListService, TodoListItem } from "../services/todo-list.service";
 })
 export class TodoContainerComponent implements OnInit {
   public itemList: Array<TodoListItem>;
-  public inputVal: string = "";
 
   constructor(private todoListService: TodoListService) {}
 
@@ -16,18 +15,18 @@ export class TodoContainerComponent implements OnInit {
     this.updateList();
   }
 
-  addTask() {
+  addTask(title) {
     let record: TodoListItem = {
       id: new Date().getDate(),
-      title: this.inputVal,
+      title: title,
       status: "new"
     };
-
     this.todoListService.addListItem(record);
     this.updateList();
   }
 
   updateList() {
     this.itemList = this.todoListService.getListItems();
+    console.log(this.itemList);
   }
 }
