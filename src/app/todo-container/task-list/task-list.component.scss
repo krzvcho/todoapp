@@ -1,0 +1,23 @@
+.tasklist {
+  border: 2px solid #ddd;
+  padding: 0px;
+  list-style-type: none;
+  .tasklist__element {
+    padding: 5px;
+    margin: 0px;
+    line-height: 20px;
+    font-size: 1rem;
+    &:nth-child(even) {
+      background: #ccc;
+    }
+    &:nth-child(odd) {
+      background: #fff;
+    }
+  }
+  .tasklist__element--important {
+    font-weight: bold;
+  }
+  .tasklist__element--ready {
+    text-decoration: line-through;
+  }
+}

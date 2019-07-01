@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { TodoListItem } from "src/app/services/todo-list.service";
 
 @Component({
@@ -8,6 +8,8 @@ import { TodoListItem } from "src/app/services/todo-list.service";
 })
 export class TaskListComponent implements OnInit {
   @Input() itemList: Array<TodoListItem>;
+  @Output() buttonDeleteClicked = new EventEmitter();
+  @Output() buttonDoneClicked = new EventEmitter();
 
   constructor() {}
 

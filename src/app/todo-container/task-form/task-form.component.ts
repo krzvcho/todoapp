@@ -7,9 +7,18 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class TaskFormComponent implements OnInit {
   @Output() formSubmit = new EventEmitter();
-  public inputVal: string = "";
+  public taskName: string = "";
+  public taskImportant: boolean = false;
 
   constructor() {}
 
   ngOnInit() {}
+
+  submitTask() {
+    this.formSubmit.emit({
+      name: this.taskName,
+      important: this.taskImportant
+    });
+    this.taskName = "";
+  }
 }

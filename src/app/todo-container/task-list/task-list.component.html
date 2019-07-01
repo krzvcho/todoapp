@@ -1,4 +1,25 @@
 Task list: {{ itemList.length }}
-<ul *ngIf="itemList && itemList.length">
-  <li *ngFor="let item of itemList">{{ item.title }}</li>
+<ul class="tasklist container" *ngIf="itemList && itemList.length">
+  <li
+    *ngFor="let item of itemList"
+    class="row tasklist__element tasklist__element--{{ item.status }}"
+  >
+    <div class="col-8">{{ item.title }}</div>
+    <div class="col-4 text-right">
+      <button
+        type="button"
+        (click)="buttonDoneClicked.emit(item)"
+        class="btn btn-sm btn-outline-success mx-2"
+      >
+        Done
+      </button>
+      <button
+        type="button"
+        (click)="buttonDeleteClicked.emit(item)"
+        class="btn btn-sm btn-outline-danger"
+      >
+        Delete
+      </button>
+    </div>
+  </li>
 </ul>

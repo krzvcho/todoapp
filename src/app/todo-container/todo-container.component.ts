@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TodoListService, TodoListItem } from "../services/todo-list.service";
+import { timer } from "rxjs";
 
 @Component({
   selector: "app-todo-container",
@@ -8,25 +9,42 @@ import { TodoListService, TodoListItem } from "../services/todo-list.service";
 })
 export class TodoContainerComponent implements OnInit {
   public itemList: Array<TodoListItem>;
+  public warnMessage: string = "";
 
   constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
-    this.updateList();
+    this.loadList();
   }
 
-  addTask(title) {
+  addTask(formData) {
     let record: TodoListItem = {
-      id: new Date().getDate(),
-      title: title,
-      status: "new"
+      id: new Date().getTime(),
+      title: formData.name,
+      status: formData.important ? "important" : "new"
     };
-    this.todoListService.addListItem(record);
-    this.updateList();
+
+    if (this.todoListService.addListItem(record)) {
+      this.loadList();
+    } else {
+      this.showWarnMessage("Failed to add item. Probably item is on your list");
+    }
+  }
+  deleteTask(task) {
+    console.log("delete", task, task.id);
+  }
+  finishTask(task) {
+    console.log("finish", task);
   }
 
-  updateList() {
+  showWarnMessage(msg: string): void {
+    const source = timer(2000);
+
+    this.warnMessage = msg;
+    source.subscribe(val => (this.warnMessage = ""));
+  }
+
+  loadList() {
     this.itemList = this.todoListService.getListItems();
-    console.log(this.itemList);
   }
 }

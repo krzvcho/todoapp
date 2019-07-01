@@ -3,7 +3,13 @@
 
   <!-- form for adding tasks -->
   <app-task-form (formSubmit)="addTask($event)"></app-task-form>
-
+  <div *ngIf="warnMessage" class="alert alert-warning" role="alert">
+    {{ warnMessage }}
+  </div>
   <!-- task list-->
-  <app-task-list [itemList]="itemList"></app-task-list>
+  <app-task-list
+    [itemList]="itemList"
+    (buttonDeleteClicked)="deleteTask($event)"
+    (buttonDoneClicked)="finishTask($event)"
+  ></app-task-list>
 </div>
