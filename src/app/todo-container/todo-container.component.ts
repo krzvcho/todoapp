@@ -31,10 +31,11 @@ export class TodoContainerComponent implements OnInit {
     }
   }
   deleteTask(task) {
-    console.log("delete", task, task.id);
+    this.todoListService.removeListItem(task);
+    this.loadList();
   }
   finishTask(task) {
-    console.log("finish", task);
+    task.status = "ready";
   }
 
   showWarnMessage(msg: string): void {

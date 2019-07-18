@@ -13,8 +13,21 @@ export class TodoListService {
   private todoList: Array<TodoListItem> = [];
   constructor() {}
 
-  addListItem(item) {
-    this.todoList.push(item);
+  addListItem(item): boolean {
+    if (this.todoList.find(i => i.title === item.title)) {
+      return false;
+    } else {
+      this.todoList.push(item);
+      return true;
+    }
+  }
+
+  removeListItem(item): void {
+    this.todoList = this.todoList.filter(i => i.title !== item.title);
+  }
+
+  changeItemStatus(item, status) {
+    // /this.todoList =
   }
 
   getListItems(): Array<TodoListItem> {
