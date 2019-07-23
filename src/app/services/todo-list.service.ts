@@ -27,7 +27,11 @@ export class TodoListService {
   }
 
   changeItemStatus(item, status) {
-    // /this.todoList =
+    let modItem = this.todoList.find(i => (i.title = item.title));
+    let itemIdx = this.todoList.indexOf(modItem);
+
+    modItem.status = status;
+    this.todoList[itemIdx] = modItem;
   }
 
   getListItems(): Array<TodoListItem> {

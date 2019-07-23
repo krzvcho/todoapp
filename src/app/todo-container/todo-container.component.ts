@@ -35,7 +35,7 @@ export class TodoContainerComponent implements OnInit {
     this.loadList();
   }
   finishTask(task) {
-    task.status = "ready";
+    this.todoListService.changeItemStatus(task, "ready");
   }
 
   showWarnMessage(msg: string): void {
