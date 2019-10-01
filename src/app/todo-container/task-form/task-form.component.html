@@ -21,7 +21,12 @@
       >Important task</label
     >
   </div>
-  <button class="btn btn-primary btn-sm m-2" (click)="submitTask()">
+
+  <button
+    [disabled]="!taskForm.value.taskName"
+    class="btn btn-primary btn-sm m-2"
+    (click)="submitTask()"
+  >
     Add task
   </button>
 </form>

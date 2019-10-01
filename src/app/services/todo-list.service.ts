@@ -1,19 +1,19 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 export interface TodoListItem {
   id: number;
   title: string;
-  status: "new" | "ready" | "important";
+  status: 'new' | 'ready' | 'important';
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TodoListService {
   private todoList: Array<TodoListItem> = [];
   constructor() {}
 
-  addListItem(item): boolean {
+  addListItem(item: TodoListItem): boolean {
     if (this.todoList.find(i => i.title === item.title)) {
       return false;
     } else {
@@ -22,13 +22,13 @@ export class TodoListService {
     }
   }
 
-  removeListItem(item): void {
+  removeListItem(item: TodoListItem): void {
     this.todoList = this.todoList.filter(i => i.title !== item.title);
   }
 
-  changeItemStatus(item, status) {
-    let modItem = this.todoList.find(i => (i.title = item.title));
-    let itemIdx = this.todoList.indexOf(modItem);
+  changeItemStatus(item: TodoListItem, status: TodoListItem['status']) {
+    const modItem = this.todoList.find(i => i.title === item.title),
+      itemIdx = this.todoList.indexOf(modItem);
 
     modItem.status = status;
     this.todoList[itemIdx] = modItem;

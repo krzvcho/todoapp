@@ -4,14 +4,34 @@ Task list: {{ itemList.length }}
     *ngFor="let item of itemList"
     class="row tasklist__element tasklist__element--{{ item.status }}"
   >
-    <div class="col-8">{{ item.title }}</div>
-    <div class="col-4 text-right">
+    <div class="col-sm-12 col-lg-6">{{ item.title }}</div>
+    <div class="col-sm-12 col-lg-6 text-right">
       <button
+        *ngIf="item.status !== 'ready'"
         type="button"
-        (click)="buttonDoneClicked.emit(item)"
-        class="btn btn-sm btn-outline-success mx-2"
+        (click)="
+          buttonChangeStatusClicked.emit({ item: item, status: 'ready' })
+        "
+        class="btn btn-sm btn-outline-success"
       >
         Done
+      </button>
+      <button
+        *ngIf="item.status === 'ready'"
+        type="button"
+        (click)="buttonChangeStatusClicked.emit({ item: item, status: 'new' })"
+        class="btn btn-sm btn-outline-warning"
+      >
+        Reopen
+      </button>
+      <button
+        type="button"
+        (click)="
+          buttonChangeStatusClicked.emit({ item: item, status: 'important' })
+        "
+        class="btn btn-sm btn-outline-warning"
+      >
+        Priority
       </button>
       <button
         type="button"

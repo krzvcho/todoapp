@@ -1,14 +1,14 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { TodoContainerComponent } from "./todo-container/todo-container.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { TodoContainerComponent } from './todo-container/todo-container.component';
 
 const routes: Routes = [
   {
-    path: "home",
+    path: 'home',
     component: TodoContainerComponent,
-    data: { title: "Home" }
+    data: { title: 'Home' }
   },
-  { path: "", redirectTo: "/home", pathMatch: "full" }
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
